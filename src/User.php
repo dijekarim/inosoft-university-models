@@ -1,6 +1,6 @@
 <?php
 
-namespace InosoftUniversity\SharedModels;
+namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -22,6 +22,10 @@ class User extends Authenticatable implements JWTSubject
         'name',
         'email',
         'password',
+        'role',
+        'gpa',
+        'math_grade',
+        'science_grade',
     ];
 
     /**
@@ -67,5 +71,13 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTCustomClaims()
     {
         return [];
+    }
+
+    public function registrations() {
+        return $this->hasMany(Registration::class);
+    }
+
+    public function grades() {
+        return $this->hasMany(Grade::class);
     }
 }
