@@ -10,13 +10,18 @@ class Registration extends Model
     use HasFactory;
 
     protected $fillable = [
-        'course_id',
         'user_id',
+        'department_id',
+        'course_id',
         'registration_date',
     ];
 
     public function course() {
         return $this->belongsTo(Course::class);
+    }
+
+    public function department() {
+        return $this->belongsTo(Department::class);
     }
 
     public function user() {
